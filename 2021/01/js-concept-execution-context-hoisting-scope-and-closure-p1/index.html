@@ -194,8 +194,8 @@
 <li>Eval EC: EC được tạo khi dùng hàm eval. Tuy nhiên đây là hàm không được khuyến khích dùng trong code. Do vậy chúng ta sẽ bỏ qua loại này.</li>
 </ul>
 <p>Mỗi EC sẽ có 2 phase (giai đoạn): creation phase và execution phase (giai đoạn khởi tạo và giai đoạn thực thi).</p>
-<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <p>Với GEC, trong creation phase:</p>
 <ul>
 <li>Khởi tạo global object, object này sẽ chứa các build in function hoặc thuộc tính sẵn có, tùy thuộc vào môi trường (Ở trên browser thì object này là window, trên node là global).</li>
@@ -227,7 +227,7 @@ console.log('Inside Global Execution Context')
 <p>Scope có 2 loại: Global Scope và Local Scope. Tương tự như EC, thì scope ngoài cùng được tạo là Global Scope. Mỗi function sẽ tạo ra 1 scope riêng của nó, gọi là function scope. Có thể hiểu nó chính là VO trong EC.</p>
 <p>Ngoài ra từ ES6, với sự bổ sung thêm từ khóa let và const thì có thêm block scope, là scope được tạo giữa 2 dấu {}.</p>
 <p>Trong creation phase, thì EC sẽ có 1 scope của riêng nó, ngoài ra, nó cũng xác định được các scope bên ngoài bao bọc nó (parent scope). Các scope con có khả năng truy cập đến scope cha, tuy nhiên không có chiều ngược lại.</p>
-<p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+<p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <blockquote>
 <p>It&rsquo;s important to note that compilation doesn&rsquo;t actually do anything in terms of reserving memory for scopes and variables. None of the program has been executed yet. Instead, compilation creates a map of all the lexical scopes that lays out what the program will need while it executes. You can think of this plan as inserted code for use at runtime, which defines all the scopes (aka, &ldquo;lexical environments&rdquo;) and registers all the identifiers (variables) for each scope.</p>
 </blockquote>

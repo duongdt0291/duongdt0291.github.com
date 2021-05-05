@@ -184,14 +184,14 @@
             <div class="main-content-wrap">
               <h3 id="git-stash">git stash</h3>
 <p>Giả sử bạn đang sửa 1 đống file ở 1 branch feature nào đấy, đột nhiên xuất hiện lỗi ở production, bắt buộc bạn phải switch sang nhánh master để sửa nhanh xong sẽ quay lại nhánh hiện tại, trong trường hợp này phải xử lí sao với đống file đang sửa bây giờ?</p>
-<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p>Trước đây nếu nhiều, thì mình thường tạo commit luôn, còn nếu trong 1 file sửa vài dòng thì mình dùng lệnh git stash vì mình nghĩ git stash đơn thuần là xóa đi toàn bộ phần đã sửa và quay lại commit HEAD. Tuy nhiên, nếu commit thì thực chất nó hơi thừa, vì cũng chưa hoàn thành xong đủ để mà viết commit cho chuẩn, sau này sẽ gây rác khi xem lại lịch sử.</p>
 <p>Trong trường hợp này, git cung cấp cho chúng ta 1 công cụ, đó chính là <code>git stash</code>. Vâng, chính xác nó là lệnh mình vẫn hay dùng, tuy nhiên ý nghĩa của nó không phải như những gì mình vẫn nghĩ 😄.</p>
 <p>Lệnh <code>git stash</code> sẽ lưu những thay đổi hiện tại (unstaged và staged) vào 1 kho, sau đó bạn có thể lấy lại ra những thay đổi bất kì lúc nào.</p>
 <p>Trong trường hợp bạn tạo file mới, tức là những file đấy vẫn chưa được theo dõi bởi git ( untracked), để có thể đẩy những file đó vào stash, chúng ta cần thêm <code>-u</code> vào sau: <code>git stash -u</code> .</p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <p>Để lấy ra stash gần nhất và ghi lên nhánh hiện tại, chúng ta dùng lệnh <code>git stash pop</code> . Lệnh này sẽ lấy ra đồng thời xóa stash gần nhất trong kho.</p>
-<p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+<p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <p>Trên thực tế, phần lớn thời gian, nếu cần dùng <code>git stash</code> chúng ta chỉ dùng 2 lệnh trên. Tuy nhiên, chúng ta cũng sẽ đi qua nhanh 1 lượt các tính năng khác của <code>git stash</code> :</p>
 <ul>
 <li><code>git stash list</code>: lấy danh sách các stash trong kho, danh sách hiện ra theo thứ tự mới nhất đổ xuống.</li>

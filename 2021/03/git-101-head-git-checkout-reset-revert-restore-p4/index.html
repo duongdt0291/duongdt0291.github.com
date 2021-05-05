@@ -190,9 +190,9 @@
 <p>Tương tự nhánh, HEAD cũng là 1 đường dẫn, trỏ đến 1 nhánh hoặc trực tiếp đến 1 commit nào đó. HEAD xác định vị trí chúng ta đang &hellip;&hellip;.</p>
 <p>Mặc định HEAD sẽ trỏ đến đường dẫn nhánh. Khi tạo 1 commit mới, thì đường dẫn nhánh này cũng thay đổi, do vậy HEAD sẽ gián tiếp trỏ đến commit gần nhất của nhánh mà không phải thay đổi giá trị gì.</p>
 <p>Trạng thái trỏ đến đường dẫn nhánh được gọi là attached HEAD</p>
-<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p>Trạng thái khi HEAD trỏ đến trực tiếp 1 commit được gọi là detached HEAD. Để chuyển sang trạng thái này, chúng ta có thể dùng lệnh git checkout</p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <h3 id="git-checkout">git checkout</h3>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git checkout &lt;commit-hash&gt;
 </code></pre></div><p>Khi dùng lệnh git checkout, HEAD sẽ trỏ trực tiếp đến commit đó. Lúc này, chúng ta có thể xem lại code ở thời điểm commit đó, chỉnh sửa, commit, test mà không ảnh hưởng đến branch nào.</p>
@@ -203,21 +203,21 @@ git switch &lt;tên nhánh&gt;
 <h3 id="git-reset">git reset</h3>
 <p>Giả sử bạn vừa tạo commit, nhưng lại nhận ra luôn là mình đã xử lí sai, lúc này, để có thể quay lại thời điểm của commit trước đó, git cung cấp cho chúng ta lệnh git reset</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git reset &lt;commit hash&gt;
-</code></pre></div><p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+</code></pre></div><p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <p>Khi dùng git reset, git sẽ đưa WD về thời điểm của đúng commit đó, đồng thời những thay đổi của những commit sau nó sẽ được đưa về trạng thái unstaged.</p>
-<p><img src="images/Untitled%203.png" alt="images/Untitled%203.png"></p>
+<p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <p>Ngoài ra còn 1 số options tiêu biểu khác khi dùng khác git reset:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// đưa WD quay về commit, đồng thời những thay đổi sau commit đó được đưa về trạng thái staged
 git reset --soft
 
 // quay về commit, và xóa toàn bộ những thay đổi sau commit đó.
 *git reset --hard &lt;commit hash&gt;*
-</code></pre></div><p><img src="images/Untitled%204.png" alt="images/Untitled%204.png"></p>
+</code></pre></div><p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
 <h3 id="git-revert">git revert</h3>
 <p>Tương tự git reset, git revert cũng dùng để đưa WD về 1 thời điểm commit nhất định, tuy nhiên thay vì xóa toàn bộ những commit sau đó, nó sẽ tạo 1 commit mới, là con của commit hiện tại.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git revert &lt;commit-hash&gt;
-</code></pre></div><p><img src="images/Untitled%205.png" alt="images/Untitled%205.png"></p>
-<p><img src="images/Untitled%206.png" alt="images/Untitled%206.png"></p>
+</code></pre></div><p><img src="image/Untitled%205.png" alt="image/Untitled%205.png"></p>
+<p><img src="image/Untitled%206.png" alt="image/Untitled%206.png"></p>
 <p>Chắc bạn thắc mắc tạo ra 2 lệnh làm quái gì nếu chức năng của nó lại giống nhau thế? Tuy nhiên, thực tế nó lại được dùng trong 2 trường hợp khác nhau:</p>
 <ul>
 <li>git reset sẽ thay đổi lịch sử commit, do vậy chỉ nên dùng trong trường hợp bạn muốn quay lại 1 commit trước, nhưng những commit này chưa có trong lịch sử commit của đồng nghiệp bạn. Tốt nhất chỉ dùng ở những nhánh riêng dạng feature, hotfix mà bạn code 1 mình</li>

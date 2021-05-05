@@ -198,14 +198,14 @@
 </ul>
 <h3 id="fast-forward-merge">Fast-forward Merge</h3>
 <p>Fast-forward merge xảy ra khi nhánh cần merge vào (ở trên hình là bugfix) có toàn bộ commit của nhánh hiện tại (master).</p>
-<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p>Lúc này, git sẽ merge toàn bộ commit của nhánh bugfix vào nhánh master như hình dưới.</p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <h3 id="merge-không-có-conflict">Merge không có conflict</h3>
 <p>Trường hợp này xảy ra khi nhánh cần merge vào không có toàn bộ commit của nhánh hiện tại. Tuy nhiên, không có file nào bị sửa chung ở những commit đấy và những commit mới ở nhánh cần merge.</p>
-<p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+<p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <p>Khi merge, git sẽ tự động merge và tạo 1 commit mới ở nhánh hiện tại như sau.</p>
-<p><img src="images/Untitled%203.png" alt="images/Untitled%203.png"></p>
+<p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <h3 id="merge-có-conflict">Merge có Conflict</h3>
 <p>Xảy ra khi nhánh cần merge và nhánh hiện tại đều chứa commit mà nhánh kia chưa có trong lịch sử và những commit đấy đều sửa chung đến 1 file.</p>
 <p>Khi gõ lệnh git merge, git sẽ tự động merge những file không bị xung đột code, và hiển thị các file bị conflict và cần sửa bằng tay.</p>
@@ -217,9 +217,9 @@
 <li>switch sang nhánh cần rebase</li>
 <li>gõ lệnh <code>git rebase &lt;nhánh muốn rebase vào nhánh hiện tại&gt;</code> .</li>
 </ol>
-<p><img src="images/Untitled%204.png" alt="images/Untitled%204.png"></p>
+<p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
 <p>Ở hình trên, có thể thấy rằng, lịch sử commit sẽ có rất nhiều merge commit dư thừa không cần thiết. Và việc giữ cho lịch sử commit sạch, gọn gàng cũng là 1 điều tương đối cần thiết trong các dự án lớn. Do vậy, trong trường hợp này, thay vì merge thì chúng ta có thể dùng rebase.</p>
-<p><img src="images/Untitled%205.png" alt="images/Untitled%205.png"></p>
+<p><img src="image/Untitled%205.png" alt="image/Untitled%205.png"></p>
 <p>Có thể thấy rằng thay vì tạo các merge commit, rebase sẽ đẩy toàn bộ commit của nhánh master lên trước commit của nhánh bugfix. Do vậy, lịch sử commit lúc này sẽ theo 1 đường thẳng, dễ nhìn hơn.</p>
 <p>Kĩ hơn, toàn bộ commit của nhánh bugfix bản chất cũng đã được xử lí lại. Có thể kiểm tra bằng cách so sánh commit hash trước và sau khi merge.</p>
 <p>[ ẢNH ]</p>

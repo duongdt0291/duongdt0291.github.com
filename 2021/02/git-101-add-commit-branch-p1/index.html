@@ -205,22 +205,22 @@
 <p>Để kiểm tra có các file nào đã được theo dõi và sửa đổi và những file nào mới được thêm vào, chúng ta có thể dùng lệnh <code>git status</code> .</p>
 <p>[ ẢNH ]</p>
 <h3 id="2-git-add--git-commit---cặp-đôi-song-hành"><strong>2. git add &amp; git commit - Cặp đôi song hành</strong></h3>
-<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p><strong>Staging Area</strong> là khu vực sẽ lưu trữ những thay đổi của bạn trên tập tin để nó có thể được commit. Tập tin nào muốn được commit thì tập tin đó phải nằm trong Staging Area.</p>
 <p>Một tập tin khi nằm trong Staging Area sẽ có trạng thái là <code>staged</code>.</p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <p>Lệnh <code>git add</code> dùng để thêm file có sự thay đổi (modified) vào Staging Area:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// thêm tất cả các file modified và untracked
 git add . 
 
 // hoặc chỉ định cụ thể từng file
 git add navbar.html navbar.css navbar.js logo.jpg
-</code></pre></div><p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+</code></pre></div><p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <p>Commit là một hành động để Git lưu lại một bản chụp (snapshot) các sự thay đổi trong thư mục làm việc, và các tập tin và thư mục được thay đổi đã phải nằm trong Staging Area. Mỗi lần commit nó sẽ được lưu lại lịch sử chỉnh sửa của mã nguồn kèm theo tên và địa chỉ email của người commit.</p>
 <p>Lệnh <code>git commit -m &quot;&lt;Nội dung commit&gt;&quot;</code> dùng để tạo 1 commit. Trường hợp nội dung commit phức tạp, cần ghi rõ ràng thì gõ <code>git commit</code>, 1 trình soạn thảo dựa theo cài đặt sẽ được mở ra để nhập nội dung (có thể cài đặt editor bằng lệnh <code>git config [--global] core.editor &lt;Tên editor&gt;</code>).</p>
-<p><img src="images/Untitled%203.png" alt="images/Untitled%203.png"></p>
+<p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <p>Mỗi commit sẽ có 1 mã hash (mã này là duy nhất trong phạm vi project) dựa theo message. Đồng thời commit này cũng sẽ chứa đường dẫn đến commit trước đó (commit cha).</p>
-<p><img src="images/Untitled%204.png" alt="images/Untitled%204.png"></p>
+<p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
 <p>Để xem lịch sử commit, chúng ta dùng lệnh <code>git log</code> .</p>
 <p>[ ẢNH ]</p>
 <p>1 số quy tắc nên dùng khi commit:</p>

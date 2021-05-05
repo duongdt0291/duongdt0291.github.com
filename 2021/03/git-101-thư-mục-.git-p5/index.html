@@ -186,7 +186,7 @@ Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, m�
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+              <p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p>File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).</p>
 <p>Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// gõ lệnh trên terminal
@@ -209,14 +209,14 @@ git config --local user.name <span style="color:#e6db74">&#34;Đặng Tuấn Dư
 </ul>
 <p>Có thể hiểu Git lưu dữ liệu dưới dạng key-value. Mỗi khi lưu 1 commit, chúng ta sẽ nhận lại được 1 đoạn mã, mã này sẽ là duy nhất trong repo. Với đoạn mã này, chúng ta có thể lấy thông tin của commit. Mã này được tạo ra nhờ các hàm băm (hash function).</p>
 <p>Hashing là quá trình biến đầu vào là một nội dung có kích thước, độ dài bất kỳ rồi sử dụng những thuật toán, công thức toán học để biến thành đầu ra tiêu chuẩn có độ dài nhất định. Quá trình đó sử dụng những Hàm băm (Hash function).</p>
-<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
 <p>Blob là 1 dạng object được git sử dụng để lưu nội dung của file. Lưu ý là blob chỉ lưu nội dung, ngoài ra không lưu bất kì thông tin gì của file.</p>
-<p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+<p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
 <p>Tree được git sử dụng để chứa nội dung của thư mục. Các thông tin được lưu là kiểu: blob hay tree, mã băm, tên file hoặc thư mục.</p>
-<p><img src="images/Untitled%203.png" alt="images/Untitled%203.png"></p>
+<p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <p>Và Commit. Object quan trọng nhất trong git. 1 commit chứa tree đầu tiên là thư mục gốc, các commit cha, tên, email người commit, và dĩ nhiên là nội dung commit.</p>
-<p><img src="images/Untitled%204.png" alt="images/Untitled%204.png"></p>
-<p><img src="images/Untitled%205.png" alt="images/Untitled%205.png"></p>
+<p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
+<p><img src="image/Untitled%205.png" alt="image/Untitled%205.png"></p>
 <p><strong>Tham khảo:</strong></p>
 <ul>
 <li><a href="https://www.canva.com/design/DAEV-h9bSG4/R6FyldDe8CO8Wfn8z92yRA/view">https://www.canva.com/design/DAEV-h9bSG4/R6FyldDe8CO8Wfn8z92yRA/view</a></li>
