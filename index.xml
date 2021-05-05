@@ -2,99 +2,99 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>duongdt&#39;s blog</title>
-    <link>https://duongdt0291.github.io/</link>
+    <link>/</link>
     <description>Recent content on duongdt&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 21 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://duongdt0291.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 21 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git 101: Thư mục .git (P5)</title>
-      <link>https://duongdt0291.github.io/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</link>
+      <link>/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</link>
       <pubDate>Sun, 21 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</guid>
+      <guid>/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</guid>
       <description>File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).
 Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.</description>
     </item>
     
     <item>
       <title>Git 101: HEAD, git checkout, reset, revert &amp; restore (P4)</title>
-      <link>https://duongdt0291.github.io/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</link>
+      <link>/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</link>
       <pubDate>Sun, 14 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</guid>
+      <guid>/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</guid>
       <description>Trước kia mỗi lần gõ lệnh git log, mình lại hay thấy có HEAD → develop, lúc đấy chẳng hiểu HEAD là cái quái gì, mà nói thật là lười. ko hiểu nó vẫn thấy sống tốt nên kệ. Tuy nhiên, phải nói đây cũng là 1 thành phần quan trọng, mà nếu hiểu nó, chúng ta sẽ dễ dàng làm việc hơn với git. Ok, cùng bắt đầu tìm hiểu nào.</description>
     </item>
     
     <item>
       <title>Git 101: Stash (P3)</title>
-      <link>https://duongdt0291.github.io/2021/03/git-101-stash-p3/</link>
+      <link>/2021/03/git-101-stash-p3/</link>
       <pubDate>Sun, 07 Mar 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/03/git-101-stash-p3/</guid>
+      <guid>/2021/03/git-101-stash-p3/</guid>
       <description>Giả sử bạn đang sửa 1 đống file ở 1 branch feature nào đấy, đột nhiên xuất hiện lỗi ở production, bắt buộc bạn phải switch sang nhánh master để sửa nhanh xong sẽ quay lại nhánh hiện tại, trong trường hợp này phải xử lí sao với đống file đang sửa bây giờ?</description>
     </item>
     
     <item>
       <title>Git 101: Merge vs Rebase (P2)</title>
-      <link>https://duongdt0291.github.io/2021/02/git-101-merge-vs-rebase-p2/</link>
+      <link>/2021/02/git-101-merge-vs-rebase-p2/</link>
       <pubDate>Sun, 28 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/02/git-101-merge-vs-rebase-p2/</guid>
+      <guid>/2021/02/git-101-merge-vs-rebase-p2/</guid>
       <description>Ở bài trước chúng ta đã tìm hiểu cơ bản về branch. Giờ chuyển branch và viết tính năng mới xong rồi, vậy làm sao để chuyển code ở nhánh mới về lại nhánh chính (ở đây mình coi như là master)?</description>
     </item>
     
     <item>
       <title>Git 101: Add, Commit &amp; Branch (P1)</title>
-      <link>https://duongdt0291.github.io/2021/02/git-101-add-commit-branch-p1/</link>
+      <link>/2021/02/git-101-add-commit-branch-p1/</link>
       <pubDate>Sun, 21 Feb 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/02/git-101-add-commit-branch-p1/</guid>
+      <guid>/2021/02/git-101-add-commit-branch-p1/</guid>
       <description>VCS là 1 chương trình theo dõi và quản lý sự thay đổi của file, giúp chúng ta có thể xem lại những đoạn code cũ, so sánh và thay đổi về 1 version trong quá khứ,&amp;hellip; Có rất nhiều VCS, và trong số đó nổi tiếng nhất, phổ biến nhất là Git.</description>
     </item>
     
     <item>
       <title>JS Concept: Constructor function, Class (P5)</title>
-      <link>https://duongdt0291.github.io/2021/01/js-concept-constructor-function-class-p5/</link>
+      <link>/2021/01/js-concept-constructor-function-class-p5/</link>
       <pubDate>Sun, 31 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/01/js-concept-constructor-function-class-p5/</guid>
+      <guid>/2021/01/js-concept-constructor-function-class-p5/</guid>
       <description>Constructor function cũng như function thông thường khác trong JS. Tuy nhiên khi sử dụng cần thêm từ khóa &lt;code&gt;new&lt;/code&gt; , và thường được viết hoa chữ cái đầu tiên để phân biệt với các function bình thường khác.</description>
     </item>
     
     <item>
       <title>JS Concept: Prototypal Inheritance (P4)</title>
-      <link>https://duongdt0291.github.io/2021/01/js-concept-prototypal-inheritance-p4/</link>
+      <link>/2021/01/js-concept-prototypal-inheritance-p4/</link>
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/01/js-concept-prototypal-inheritance-p4/</guid>
+      <guid>/2021/01/js-concept-prototypal-inheritance-p4/</guid>
       <description>Từ khóa &lt;strong&gt;this&lt;/strong&gt; là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy &lt;strong&gt;this&lt;/strong&gt; là quái gì?</description>
     </item>
     
     <item>
       <title>JS Concept: Object (P3)</title>
-      <link>https://duongdt0291.github.io/2021/01/js-concept-object-p3/</link>
+      <link>/2021/01/js-concept-object-p3/</link>
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/01/js-concept-object-p3/</guid>
+      <guid>/2021/01/js-concept-object-p3/</guid>
       <description>Từ khóa &lt;strong&gt;this&lt;/strong&gt; là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy &lt;strong&gt;this&lt;/strong&gt; là quái gì?</description>
     </item>
     
     <item>
       <title>JS Concept: This (P2)</title>
-      <link>https://duongdt0291.github.io/2021/01/js-concept-this-p2/</link>
+      <link>/2021/01/js-concept-this-p2/</link>
       <pubDate>Sun, 10 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/01/js-concept-this-p2/</guid>
+      <guid>/2021/01/js-concept-this-p2/</guid>
       <description>Từ khóa &lt;strong&gt;this&lt;/strong&gt; là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy &lt;strong&gt;this&lt;/strong&gt; là quái gì?</description>
     </item>
     
     <item>
       <title>JS Concept: Execution Context, Hoisting, Scope And Closure (P1)</title>
-      <link>https://duongdt0291.github.io/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</link>
+      <link>/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</link>
       <pubDate>Sun, 03 Jan 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://duongdt0291.github.io/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</guid>
+      <guid>/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</guid>
       <description>Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.</description>
     </item>
     

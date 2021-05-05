@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://duongdt0291.github.io/</loc>
+    <loc>/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/tags/git/</loc>
+    <loc>/tags/git/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</loc>
+    <loc>/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</loc>
+    <loc>/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</loc>
     <lastmod>2021-03-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/03/git-101-stash-p3/</loc>
+    <loc>/2021/03/git-101-stash-p3/</loc>
     <lastmod>2021-03-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/02/git-101-merge-vs-rebase-p2/</loc>
+    <loc>/2021/02/git-101-merge-vs-rebase-p2/</loc>
     <lastmod>2021-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/02/git-101-add-commit-branch-p1/</loc>
+    <loc>/2021/02/git-101-add-commit-branch-p1/</loc>
     <lastmod>2021-02-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/tags/javascript/</loc>
+    <loc>/tags/javascript/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/01/js-concept-constructor-function-class-p5/</loc>
+    <loc>/2021/01/js-concept-constructor-function-class-p5/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/01/js-concept-prototypal-inheritance-p4/</loc>
+    <loc>/2021/01/js-concept-prototypal-inheritance-p4/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/01/js-concept-object-p3/</loc>
+    <loc>/2021/01/js-concept-object-p3/</loc>
     <lastmod>2021-01-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/01/js-concept-this-p2/</loc>
+    <loc>/2021/01/js-concept-this-p2/</loc>
     <lastmod>2021-01-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://duongdt0291.github.io/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</loc>
+    <loc>/2021/01/js-concept-execution-context-hoisting-scope-and-closure-p1/</loc>
     <lastmod>2021-01-03T00:00:00+00:00</lastmod>
   </url>
 </urlset>
