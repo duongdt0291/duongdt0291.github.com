@@ -68,7 +68,7 @@ Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, m�
       <pubDate>Sun, 24 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/2021/01/js-concept-prototypal-inheritance-p4/</guid>
-      <description>Từ khóa &lt;strong&gt;this&lt;/strong&gt; là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy &lt;strong&gt;this&lt;/strong&gt; là quái gì?</description>
+      <description>Mọi object trong JS đều có thuộc tính ẩn &lt;code&gt;[[Prototype]]&lt;/code&gt; . Thuộc tính này có giá trị là null hoặc đường dẫn đến 1 object khác. Object này được gọi là &amp;lsquo;1 prototype&amp;rsquo;.</description>
     </item>
     
     <item>
@@ -77,7 +77,7 @@ Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, m�
       <pubDate>Sun, 17 Jan 2021 00:00:00 +0000</pubDate>
       
       <guid>/2021/01/js-concept-object-p3/</guid>
-      <description>Từ khóa &lt;strong&gt;this&lt;/strong&gt; là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy &lt;strong&gt;this&lt;/strong&gt; là quái gì?</description>
+      <description>Các thuộc tính (property) trong 1 object không chỉ đơn thuần chứa các giá trị mà còn có các tính chất khác (descriptor). Để xem các tính chất này, chúng ta dùng &lt;code&gt;Object.getOwnPropertyDescriptor(obj)&lt;/code&gt; .</description>
     </item>
     
     <item>
