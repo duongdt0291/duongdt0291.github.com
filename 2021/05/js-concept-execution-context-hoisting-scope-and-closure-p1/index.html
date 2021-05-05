@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Đặng Tuấn Dương">
+<meta name="keywords" content="javascript">
+<meta name="description" content="Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.">
+
+
+<meta property="og:description" content="Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Concept: Execution Context, Hoisting, Scope And Closure (P1)">
+<meta name="twitter:title" content="JS Concept: Execution Context, Hoisting, Scope And Closure (P1)">
+<meta property="og:url" content="http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+<meta property="twitter:url" content="http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+<meta property="og:site_name" content="duongdt&#39;s blog">
+<meta property="og:description" content="Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.">
+<meta name="twitter:description" content="Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2021-05-05T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-05-05T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="javascript">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://example.org/images/avatar.jpeg">
+  <meta property="twitter:image" content="http://example.org/images/avatar.jpeg">
+
+
+    <title>JS Concept: Execution Context, Hoisting, Scope And Closure (P1)</title>
+
+    <link rel="icon" href="images/avatar.jpeg">
+    
+
+    
+
+    <link rel="canonical" href="http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">duongdt&#39;s blog</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="http://example.org/images/avatar.jpeg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Đặng Tuấn Dương</h4>
+        
+          <h5 class="sidebar-profile-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/posts">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user-circle"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      JS Concept: Execution Context, Hoisting, Scope And Closure (P1)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-05-05T00:00:00Z">
+        
+  
+  
+  
+  
+    5 tháng 5 2021
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h2 id="execution-context-ngữ-cảnh-thực-thi"><strong>Execution Context (Ngữ cảnh thực thi)</strong></h2>
+<p>Để có thể hiểu được những concept phức tạp trong JS, thì concept đầu tiên và cơ bản cần hiểu là Execution Context (ngữ cảnh thực thi). Vậy EC là gì?</p>
+<blockquote>
+<p>Execution context là 1 khái niệm trừu tượng. Đó là nơi chứa thông tin về môi trường và đoạn code sẽ được thực thi. Mọi dòng code trong JS khi được chạy đều nằm trong 1 execution context.</p>
+</blockquote>
+<p>Có 3 loại EC trong JS:</p>
+<ul>
+<li>Global EC: EC mặc định, được tạo trước khi mọi dòng code được chạy. Kể cả bạn có 1 file .js không chứa dòng code nào, thì GEC vẫn được khởi tạo ngay khi chạy.</li>
+<li>Function EC: Mỗi khi 1 function được gọi, JS sẽ tạo 1 EC mới cho chính function đó sử dụng.</li>
+<li>Eval EC: EC được tạo khi dùng hàm eval. Tuy nhiên đây là hàm không được khuyến khích dùng trong code. Do vậy chúng ta sẽ bỏ qua loại này.</li>
+</ul>
+<p>Mỗi EC sẽ có 2 phase (giai đoạn): creation phase và execution phase (giai đoạn khởi tạo và giai đoạn thực thi).</p>
+<p><img src="images/Untitled.png" alt="images/Untitled.png"></p>
+<p><img src="images/Untitled%201.png" alt="images/Untitled%201.png"></p>
+<p>Với GEC, trong creation phase:</p>
+<ul>
+<li>Khởi tạo global object, object này sẽ chứa các build in function hoặc thuộc tính sẵn có, tùy thuộc vào môi trường (Ở trên browser thì object này là window, trên node là global).</li>
+<li>Tạo Variable Object (VO) scan qua toàn bộ code để khai báo các biến không nằm trong function nào (khai báo bằng var) và các function (chỉ các function declaration). Với biến, thì js sẽ tạo 1 key trong VO trùng với tên biến và gán cho giá trị <em>undefined</em>. Với function, tạo 1 key trong VO trùng với tên function với giá trị là đường dẫn đến function trong bộ nhớ (tức giá trị function được lưu luôn ở giai đoạn này, khác với biến chỉ có tên).</li>
+<li>Xác định giá trị của <strong>this</strong> (biến context).</li>
+</ul>
+<p>Với FEC cũng gần tương tự, trong creation phase:</p>
+<ul>
+<li>Tạo VO để khai báo arguments, biến, function. Agruments là 1 biến dạng object-like-array lưu giữ các tham số đk truyền vào. Ví dụ {par1: val1, par2: val2, length: 2}. Gọi là object-like-array, vì nó lưu dạng key value giông object, và có thêm thuộc tính length. Tuy nhiên nó ko có các method đặc trưng của array.</li>
+<li>Xác định scope chain (khái niệm scope và scope chain sẽ đk nói ở bên dưới).</li>
+<li>Xác định giá trị của <strong>this</strong> (giá trị này chỉ đk xác định khi function được gọi, tùy thuộc vào ngữ cảnh được gọi, chứ không xác định được từ giai đoạn compile).</li>
+</ul>
+<p>Trong giai đoạn execution phase thì JS engine sẽ chạy qua lần lượt các dòng code và thực thi các lệnh.</p>
+<p><img src="https://ui.dev/post-images/javascript-execution-stack.gif" alt="https://ui.dev/post-images/javascript-execution-stack.gif"></p>
+<p>Ở ví dụ tiếp theo, chta có thể thấy rằng, khi đoạn code trên đk thực thi, gec luôn tồn tại và khi 1 function a đk gọi, thì 1 fec a sẽ được tạo và nằm trên gec. Sau đó trong function a, function b được khai báo và được gọi luôn, thì 1 fec b sẽ được tạo và nằm trên fec a. Sau đó khi function thực hiện xong hết các lệnh, thì fec của nó cũng biến mất, a thực hiện xong hết lệnh thì fec a cũng biến mất. Đây chính là execution stack trong js (hay cũng có thể hiểu là call stack)</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">a</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Hello World!&#39;</span>
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">first</span>() {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Inside first function&#39;</span>)
+  <span style="color:#a6e22e">second</span>()
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Again inside first function&#39;</span>)
+}
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">second</span>() {
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Inside second function&#39;</span>)
+}
+<span style="color:#a6e22e">first</span>()
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Inside Global Execution Context&#39;</span>)
+</code></pre></div><h2 id="scope-scope-chain"><strong>Scope, Scope chain</strong></h2>
+<p>Scope (phạm vi) trong JS giúp xác định phạm vi truy cập biến hoặc function từ 1 vị trí xác định trong code.</p>
+<p>Scope có 2 loại: Global Scope và Local Scope. Tương tự như EC, thì scope ngoài cùng được tạo là Global Scope. Mỗi function sẽ tạo ra 1 scope riêng của nó, gọi là function scope. Có thể hiểu nó chính là VO trong EC.</p>
+<p>Ngoài ra từ ES6, với sự bổ sung thêm từ khóa let và const thì có thêm block scope, là scope được tạo giữa 2 dấu {}.</p>
+<p>Trong creation phase, thì EC sẽ có 1 scope của riêng nó, ngoài ra, nó cũng xác định được các scope bên ngoài bao bọc nó (parent scope). Các scope con có khả năng truy cập đến scope cha, tuy nhiên không có chiều ngược lại.</p>
+<p><img src="images/Untitled%202.png" alt="images/Untitled%202.png"></p>
+<blockquote>
+<p>It&rsquo;s important to note that compilation doesn&rsquo;t actually do anything in terms of reserving memory for scopes and variables. None of the program has been executed yet. Instead, compilation creates a map of all the lexical scopes that lays out what the program will need while it executes. You can think of this plan as inserted code for use at runtime, which defines all the scopes (aka, &ldquo;lexical environments&rdquo;) and registers all the identifiers (variables) for each scope.</p>
+</blockquote>
+<h2 id="closure"><strong>Closure</strong></h2>
+<p><img src="https://ui.dev/post-images/closure-scope.gif" alt="https://ui.dev/post-images/closure-scope.gif"></p>
+<p>Tham khảo:</p>
+<ul>
+<li><a href="https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch1.md#lexical-scope">https://github.com/getify/You-Dont-Know-JS/blob/2nd-ed/scope-closures/ch1.md#lexical-scope</a></li>
+<li><a href="https://www.beautifulcode.co/blog/65-lexical-scope-in-javascript">https://www.beautifulcode.co/blog/65-lexical-scope-in-javascript</a></li>
+<li><a href="https://ui.dev/ultimate-guide-to-execution-contexts-hoisting-scopes-and-closures-in-javascript/">https://ui.dev/ultimate-guide-to-execution-contexts-hoisting-scopes-and-closures-in-javascript/</a></li>
+<li><a href="https://ui.dev/var-let-const/">https://ui.dev/var-let-const/</a></li>
+<li><a href="https://codeburst.io/js-demystified-04-execution-context-97dea52c8ac6">https://codeburst.io/js-demystified-04-execution-context-97dea52c8ac6</a></li>
+<li><a href="https://medium.com/@sudhakarsp06/creation-phase-and-execution-phase-in-javascript-32fcdbef60f4">https://medium.com/@sudhakarsp06/creation-phase-and-execution-phase-in-javascript-32fcdbef60f4</a></li>
+<li><a href="https://dev.to/innovationincu/javascript-execution-context-4817">https://dev.to/innovationincu/javascript-execution-context-4817</a></li>
+<li><a href="https://ui.dev/javascript-visualizer/">https://ui.dev/javascript-visualizer/</a></li>
+<li><a href="https://medium.com/@prashantramnyc/javascript-closures-simplified-d0d23fa06ba4">https://medium.com/@prashantramnyc/javascript-closures-simplified-d0d23fa06ba4</a></li>
+<li><a href="https://www.freecodecamp.org/news/deep-dive-into-scope-chains-and-closures-21ee18b71dd9/">https://www.freecodecamp.org/news/deep-dive-into-scope-chains-and-closures-21ee18b71dd9/</a></li>
+<li><a href="https://blog.bitsrc.io/understanding-execution-context-and-execution-stack-in-javascript-1c9ea8642dd0">https://blog.bitsrc.io/understanding-execution-context-and-execution-stack-in-javascript-1c9ea8642dd0</a></li>
+<li><a href="https://blog.bitsrc.io/understanding-scope-and-scope-chain-in-javascript-f6637978cf53">https://blog.bitsrc.io/understanding-scope-and-scope-chain-in-javascript-f6637978cf53</a></li>
+<li><a href="https://blog.bitsrc.io/a-beginners-guide-to-closures-in-javascript-97d372284dda">https://blog.bitsrc.io/a-beginners-guide-to-closures-in-javascript-97d372284dda</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/javascript/">javascript</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/05/js-concept-this-p2/" data-tooltip="JS Concept: This (P2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Đặng Tuấn Dương. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/05/js-concept-this-p2/" data-tooltip="JS Concept: This (P2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://example.org/2021/05/js-concept-execution-context-hoisting-scope-and-closure-p1/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fexample.org%2F2021%2F05%2Fjs-concept-execution-context-hoisting-scope-and-closure-p1%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fexample.org%2F2021%2F05%2Fjs-concept-execution-context-hoisting-scope-and-closure-p1%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://example.org/images/avatar.jpeg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Đặng Tuấn Dương</h4>
+    
+      <div id="about-card-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        NodeJs Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Việt Nam
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('http://example.org/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Đặng Tuấn Dương">
+<meta name="keywords" content="javascript">
+<meta name="description" content="Từ khóa this là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy this là quái gì?">
+
+
+<meta property="og:description" content="Từ khóa this là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy this là quái gì?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Concept: Object (P3)">
+<meta name="twitter:title" content="JS Concept: Object (P3)">
+<meta property="og:url" content="http://example.org/2021/01/js-concept-object-p3/">
+<meta property="twitter:url" content="http://example.org/2021/01/js-concept-object-p3/">
+<meta property="og:site_name" content="duongdt&#39;s blog">
+<meta property="og:description" content="Từ khóa this là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy this là quái gì?">
+<meta name="twitter:description" content="Từ khóa this là 1 trong những vấn đề dễ gây đau đầu và nhầm lẫn nhất cho những người mới tiếp xúc với JS. Vậy this là quái gì?">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2021-01-17T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-01-17T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="javascript">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="http://example.org/images/avatar.jpeg">
+  <meta property="twitter:image" content="http://example.org/images/avatar.jpeg">
+
+
+    <title>JS Concept: Object (P3)</title>
+
+    <link rel="icon" href="images/avatar.jpeg">
+    
+
+    
+
+    <link rel="canonical" href="http://example.org/2021/01/js-concept-object-p3/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">duongdt&#39;s blog</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="http://example.org/images/avatar.jpeg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Đặng Tuấn Dương</h4>
+        
+          <h5 class="sidebar-profile-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/posts">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user-circle"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      JS Concept: Object (P3)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-01-17T00:00:00Z">
+        
+  
+  
+  
+  
+    17 tháng 1 2021
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h3 id="property-descriptor">Property Descriptor</h3>
+<p>Các thuộc tính (property) trong 1 object không chỉ đơn thuần chứa các giá trị mà còn có các tính chất khác (descriptor). Để xem các tính chất này, chúng ta dùng <code>Object.getOwnPropertyDescriptor(obj)</code> .</p>
+<pre><code>const user = {
+  name: 'duongdt',
+}
+
+console.log(Object.getOwnPropertyDescriptor(user, 'name'))
+// {
+//		value: 'duongdt',
+//		writable: true,
+//    enumerable: true,
+//    configurable: true
+// }
+</code></pre><p>Các tính chất trên mang ý nghĩa sau:</p>
+<ul>
+<li><code>value</code> : giá trị của thuộc tính</li>
+<li><code>writable</code> : có thể chỉnh sửa giá trị của thuộc tính được không.</li>
+<li><code>configurable</code> : có thể chỉnh sửa các property descriptor được hay không. Ngoài ra nếu là false, thì sẽ không thể xóa thuộc tính (writable = false chỉ giúp không chỉnh sửa được giá trị của thuộc tính nhưng vẫn có thể xóa được).</li>
+<li><code>enumerable</code>: có thể dùng vòng lặp để lấy ra thuộc tính hay không.</li>
+</ul>
+<p>Để tạo 1 thuộc tính bình thường, cách viết thông thường sẽ là <code>user.age = 30</code> , lúc này các descriptor của trường age sẽ lấy giá trị mặc định là true.</p>
+<p>Nếu muốn cài đặt hoặc chỉnh sửa các tính chất này, chúng ta dùng <code>Object.defineProperty</code> .</p>
+<pre><code>const user = {
+  name: 'duongdt',
+  age: 30,
+  job: 'developer',
+}
+
+// writable
+user.name = 'dima'
+console.log(user.name) // dima
+Object.defineProperty(user, 'name', {
+  writable: false,
+})
+user.name = 'duongdt'
+console.log(user.name) // dima
+
+// enumerable
+console.log(Object.keys(user)) // [ 'name', 'age', 'job' ]
+Object.defineProperty(user, 'name', {
+  enumerable: false,
+})
+console.log(Object.keys(user)) // [ 'age', 'job' ]
+console.log('name' in user) // true
+
+// configurable
+Object.defineProperty(user, 'name', {
+  configurable: false,
+})
+delete user.name
+console.log(user.name) // 'dima'
+console.log(user.age) // 30
+delete user.age
+console.log(user.age) // undefined
+</code></pre><h3 id="getters-setters">Getters, setters</h3>
+<p>Đôi khi khi thay đổi giá trị của 1 thuộc tính chúng ta cần validate hoặc 1 thuộc tính có giá trị bằng 2 hoặc nhiều thuộc tính khác hợp lại. JS cung cấp getter và setter để hỗ trợ chúng ta việc này.</p>
+<pre><code>const user = {
+  first_name: 'Duong',
+  last_name: 'DT',
+  get full_name() {
+    return `${this.first_name} ${this.last_name}`
+  },
+  set full_name(name) {
+    const els = name.split(' ')
+    this.first_name = els[0]
+    this.last_name = els.slice(1).join(' ')
+  },
+}
+console.log(user.full_name)
+user.full_name = 'Duong Dang Tuan'
+console.log(user.last_name)
+</code></pre><h3 id="immutability">Immutability</h3>
+<p>JS cung cấp 1 số build-in function để tạo ra tính bất biến cho object.</p>
+<ul>
+<li>Object.preventExtensions(obj): không cho phép thêm thuộc tính mới.</li>
+<li>Object.seal(obj): không cho thêm, xóa thuộc tính. Đặt configurable = false cho tất cả các thuộc tính.</li>
+<li>Object.freeze(obj): không cho thêm, sửa, xóa thuộc tính. Đặt configurable = false, writable = false cho tất cả thuộc tính.</li>
+</ul>
+<h3 id="get-put">[[Get]], [[Put]]</h3>
+<p>Tham khảo:</p>
+<ul>
+<li><a href="https://github.com/getify/You-Dont-Know-JS/blob/1st-ed/this%20%26%20object%20prototypes/README.md">You Don&rsquo;t Know JS: this &amp; Object Prototypes - 1st Edition</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/javascript/">javascript</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/01/js-concept-prototypal-inheritance-p4/" data-tooltip="JS Concept: Prototypal Inheritance (P4)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/01/js-concept-this-p2/" data-tooltip="JS Concept: This (P2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.org/2021/01/js-concept-object-p3/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://example.org/2021/01/js-concept-object-p3/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Đặng Tuấn Dương. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/01/js-concept-prototypal-inheritance-p4/" data-tooltip="JS Concept: Prototypal Inheritance (P4)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Tiếp</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/01/js-concept-this-p2/" data-tooltip="JS Concept: This (P2)">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Trước</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http://example.org/2021/01/js-concept-object-p3/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=http://example.org/2021/01/js-concept-object-p3/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fexample.org%2F2021%2F01%2Fjs-concept-object-p3%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fexample.org%2F2021%2F01%2Fjs-concept-object-p3%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="http://example.org/images/avatar.jpeg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Đặng Tuấn Dương</h4>
+    
+      <div id="about-card-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        NodeJs Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Việt Nam
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('http://example.org/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+
