@@ -184,7 +184,7 @@
             <div class="main-content-wrap">
               <h3 id="prototype">[[Prototype]]</h3>
 <p>Mọi object trong JS đều có thuộc tính ẩn <code>[[Prototype]]</code> . Thuộc tính này có giá trị là null hoặc đường dẫn đến 1 object khác. Object này được gọi là &lsquo;1 prototype&rsquo;.</p>
-<p><img src="images/object-prototype-empty.svg" alt="images/object-prototype-empty.svg"></p>
+<p><img src="image/object-prototype-empty.svg" alt="image/object-prototype-empty.svg"></p>
 <p>Khi đọc 1 thuộc tính trong object, nếu object không tồn tại thuộc tính đó, JS sẽ tìm đến prototype object, nếu vẫn ko có sẽ tìm đến protype của prototype object. Việc tìm này sẽ dừng lại khi tìm thấy thuộc tính và trả về giá trị của thuộc tính hoặc đến khi không tìm thấy prototype object nào nữa ( prototype có gía trị bằng <code>null</code> ) thì sẽ trả về <code>undefined</code> (cơ chế tương tự scope chain).</p>
 <pre><code>const animal = {
   eat() {
@@ -230,7 +230,7 @@ for (const prop in cat) {
 // eat
 </code></pre><h3 id="objectprototype">Object.prototype</h3>
 <p>Nếu bạn để ý, thì ở trên chúng ta có sử dụng method <code>hasOwnProperty</code> , nhưng method này không tồn tại ở object dog hoặc cat, mà cũng ko ở animal. Ngoài ra khi dùng Object.keys hoặc for&hellip;in thì thuộc tính này đều không được trả về. Câu hỏi đặt ra là thuộc tính này từ đâu mọc ra? 🙃</p>
-<p><img src="images/object-prototype-1.svg" alt="images/object-prototype-1.svg"></p>
+<p><img src="image/object-prototype-1.svg" alt="image/object-prototype-1.svg"></p>
 <p>Ở hình trên Object là 1 built-in constructor function (constructor function dùng với ý nghĩa tương tự như class ở trong các ngôn ngữ khác). function Object có thuộc tính prototype là 1 object với các method .</p>
 <p>Việc tạo obj = {} cũng tương đương với obj = new Object(). Lúc này, [[Prototype]] của object nhận giá trị mặc định là Object.prototype. Các thuộc tính trong Object.prototype đều được cài đặt enumerable là false.</p>
 <p>Ở ví dụ trên, chúng ta có 2 object dog và cat được chugns ta đặt [[Prototype]] là animal, còn animal có [[Prototype]] mặc định sẽ là Object.prototype.</p>

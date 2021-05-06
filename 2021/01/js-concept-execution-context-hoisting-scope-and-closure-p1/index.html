@@ -210,7 +210,8 @@
 </ul>
 <p>Trong giai đoạn execution phase thì JS engine sẽ chạy qua lần lượt các dòng code và thực thi các lệnh.</p>
 <p><img src="https://ui.dev/post-images/javascript-execution-stack.gif" alt="https://ui.dev/post-images/javascript-execution-stack.gif"></p>
-<p>Ở ví dụ tiếp theo, chta có thể thấy rằng, khi đoạn code trên đk thực thi, gec luôn tồn tại và khi 1 function a đk gọi, thì 1 fec a sẽ được tạo và nằm trên gec. Sau đó trong function a, function b được khai báo và được gọi luôn, thì 1 fec b sẽ được tạo và nằm trên fec a. Sau đó khi function thực hiện xong hết các lệnh, thì fec của nó cũng biến mất, a thực hiện xong hết lệnh thì fec a cũng biến mất. Đây chính là execution stack trong js (hay cũng có thể hiểu là call stack)</p>
+<p>Ở ví dụ tiếp theo, chta có thể thấy rằng, khi đoạn code trên đk thực thi, gec luôn tồn tại và khi 1 function a đk gọi, thì 1 fec a sẽ được tạo và nằm trên gec. Sau đó trong function a, function b được khai báo và được gọi luôn, thì 1 fec b sẽ được tạo và nằm trên fec a. Sau đó khi function thực hiện xong hết các lệnh, thì fec của nó cũng biến mất, a thực hiện xong hết lệnh thì fec a cũng biến mất. Đây chính là execution stack trong js (hay cũng có thể hiểu là call stack)
+*Stack là 1 cấu trúc dữ liệu tuân theo nguyên tắc LIFO (last in, first out), tức là phần tử được thêm vào cuối cùng sẽ được lấy ra đầu tiên.</p>
 <pre><code>let a = 'Hello World!'
 function first() {
   console.log('Inside first function')
@@ -226,12 +227,11 @@ console.log('Inside Global Execution Context')
 <p>Scope (phạm vi) trong JS giúp xác định phạm vi truy cập biến hoặc function từ 1 vị trí xác định trong code.</p>
 <p>Scope có 2 loại: Global Scope và Local Scope. Tương tự như EC, thì scope ngoài cùng được tạo là Global Scope. Mỗi function sẽ tạo ra 1 scope riêng của nó, gọi là function scope. Có thể hiểu nó chính là VO trong EC.</p>
 <p>Ngoài ra từ ES6, với sự bổ sung thêm từ khóa let và const thì có thêm block scope, là scope được tạo giữa 2 dấu {}.</p>
-<p>Trong creation phase, thì EC sẽ có 1 scope của riêng nó, ngoài ra, nó cũng xác định được các scope bên ngoài bao bọc nó (parent scope). Các scope con có khả năng truy cập đến scope cha, tuy nhiên không có chiều ngược lại.</p>
+<p>Trong creation phase, thì EC sẽ có 1 scope của riêng nó, ngoài ra, nó cũng xác định được các scope bên ngoài bao bọc nó (parent scope). Các scope con có khả năng truy cập đến scope cha, tuy nhiên không có chiều ngược lại. Khi tìm một biến, JS bắt đầu với scope bên trong, sau đó tìm kiếm dần mở rộng ra bên ngoài các biến/object/function cho đến khi chúng được tìm thấy.</p>
 <p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
-<blockquote>
-<p>It&rsquo;s important to note that compilation doesn&rsquo;t actually do anything in terms of reserving memory for scopes and variables. None of the program has been executed yet. Instead, compilation creates a map of all the lexical scopes that lays out what the program will need while it executes. You can think of this plan as inserted code for use at runtime, which defines all the scopes (aka, &ldquo;lexical environments&rdquo;) and registers all the identifiers (variables) for each scope.</p>
-</blockquote>
 <h2 id="closure"><strong>Closure</strong></h2>
+<p>Một closure là một inner function (hàm khai báo bên trong một hàm khác), nó có thể truy cập tới các biến của outer function (hàm chứa inner function) kể cả khi outer function đã return (không còn trong execution stack).</p>
+<p>Closure có 3 scope chain, nó có thể: truy cập tới các biến khai báo bên trong nó, truy cập tới các biến của outer function, và truy cập tới các biến global.</p>
 <p><img src="https://ui.dev/post-images/closure-scope.gif" alt="https://ui.dev/post-images/closure-scope.gif"></p>
 <p>Tham khảo:</p>
 <ul>

@@ -208,34 +208,31 @@
 <p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <h3 id="merge-có-conflict">Merge có Conflict</h3>
 <p>Xảy ra khi nhánh cần merge và nhánh hiện tại đều chứa commit mà nhánh kia chưa có trong lịch sử và những commit đấy đều sửa chung đến 1 file.</p>
-<p>Khi gõ lệnh git merge, git sẽ tự động merge những file không bị xung đột code, và hiển thị các file bị conflict và cần sửa bằng tay.</p>
+<p>Khi gõ lệnh git merge, git sẽ tự động merge những file không bị xung đột code, và hiển thị các file bị xung đột code. Chúng ta cần vào từng file và xem xem cần lấy đoạn code nào.</p>
+<p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
 <h2 id="rebase">Rebase</h2>
-<h3 id="alternative-merge-tool">Alternative merge tool</h3>
 <p>Để kết hợp code của các nhánh với nhau, ngoài <code>git merge</code> , chúng ta còn có 1 công cụ khác, đó là <code>git rebase</code> . Có rất nhiều quan điểm về lệnh này. Có người không bao giờ dùng mà chỉ dùng git merge, có người lại ưu tiên dùng nhiều git rebase hơn. Tuy nhiên, cho dù có ý kiến ý có thế nào, phần lớn mọi người đều có đồng quan điểm là, git rebase chỉ nên dùng nếu bạn thật sự hiểu bạn đang định làm gì với nó 😂. Oki, vậy bắt đầu tìm hiểu về nó nào.</p>
 <p>Tương tự như merge, để rebase, chúng ta cũng thực hiện 2 bước đơn giản sau:</p>
 <ol>
 <li>switch sang nhánh cần rebase</li>
 <li>gõ lệnh <code>git rebase &lt;nhánh muốn rebase vào nhánh hiện tại&gt;</code> .</li>
 </ol>
-<p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
-<p>Ở hình trên, có thể thấy rằng, lịch sử commit sẽ có rất nhiều merge commit dư thừa không cần thiết. Và việc giữ cho lịch sử commit sạch, gọn gàng cũng là 1 điều tương đối cần thiết trong các dự án lớn. Do vậy, trong trường hợp này, thay vì merge thì chúng ta có thể dùng rebase.</p>
 <p><img src="image/Untitled%205.png" alt="image/Untitled%205.png"></p>
+<p>Ở hình trên, có thể thấy rằng, lịch sử commit sẽ có rất nhiều merge commit dư thừa không cần thiết. Và việc giữ cho lịch sử commit sạch, gọn gàng cũng là 1 điều tương đối cần thiết trong các dự án lớn. Do vậy, trong trường hợp này, thay vì merge thì chúng ta có thể dùng rebase.</p>
+<p><img src="image/Untitled%206.png" alt="image/Untitled%206.png"></p>
 <p>Có thể thấy rằng thay vì tạo các merge commit, rebase sẽ đẩy toàn bộ commit của nhánh master lên trước commit của nhánh bugfix. Do vậy, lịch sử commit lúc này sẽ theo 1 đường thẳng, dễ nhìn hơn.</p>
-<p>Kĩ hơn, toàn bộ commit của nhánh bugfix bản chất cũng đã được xử lí lại. Có thể kiểm tra bằng cách so sánh commit hash trước và sau khi merge.</p>
-<p>[ ẢNH ]</p>
 <p>Quy tắc: chỉ dùng rebase ở những nhánh cá nhân, tức là nhánh đó chỉ có duy nhất bạn sử dung, người khác không dùng đến. Nguyên nhân ở đây là do khi rebase, lịch sử commit sẽ bị thay đổi, và khi đồng nghiệp lấy code của bạn về sẽ bị loạn. Với các nhánh mà nhiều người sử dụng, merge là lựa chọn sáng suốt và duy nhất nên sử dụng.</p>
-<h3 id="clean-up-tool">Clean up tool</h3>
+<h3 id="rebase-interactive---chỉnh-sửa-lịch-sử-commit">Rebase interactive - chỉnh sửa lịch sử commit</h3>
 <p>Git rebase không chỉ là 1 công cụ để tích hợp code ở các nhánh khác nhau, mà nó còn được dùng để gộp, xóa, thay đổi lịch sử commit.</p>
-<p>VD có</p>
-<p>Dưới đây là các tùy chọn thường được sử dụng:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"> git rebase -i &lt;commit-hash&gt;
+</code></pre></div><p>Git sẽ lấy danh sách toàn bộ commit từ commit-hash đến vị trí con trỏ HEAD hiện tại, và hiển thị editor để người dùng có thể áp dụng các tùy chọn dưới đây cho mỗi commit:</p>
 <ul>
 <li><strong>pick:</strong> giữ nguyên commit (mặc định)</li>
 <li><strong>reword</strong>: đổi commit message</li>
 <li><strong>squash:</strong> chuyển thay đổi vào commit trước đó, hiện editor để điền commit gộp với commit trước đó</li>
-<li><strong>fixup:</strong> chuyển những thay đổi vào commit trước đó, đồng thời xóa commit.</li>
+<li><strong>fixup:</strong> chuyển những thay đổi vào commit trước đó, đồng thời xóa luôn commit.</li>
 <li><strong>drop:</strong> xóa commit</li>
 </ul>
-<p>Khi 1 commit bị thay đổi, toàn bộ commit sau nó cũng sẽ được thay đổi.</p>
 <p>Tham khảo:</p>
 <ul>
 <li><a href="https://www.canva.com/design/DAEUZEra8W0/b4I77uG1YJAu4q6UOTIG6Q/view">https://www.canva.com/design/DAEUZEra8W0/b4I77uG1YJAu4q6UOTIG6Q/view</a></li>

@@ -203,34 +203,33 @@
 <li>Untracked file - là file chưa được git theo dõi, thường là các file mới được tạo.</li>
 </ul>
 <p>Để kiểm tra có các file nào đã được theo dõi và sửa đổi và những file nào mới được thêm vào, chúng ta có thể dùng lệnh <code>git status</code> .</p>
-<p>[ ẢNH ]</p>
-<h3 id="2-git-add--git-commit---cặp-đôi-song-hành"><strong>2. git add &amp; git commit - Cặp đôi song hành</strong></h3>
+<h3 id="2-git-add"><strong>2. git add</strong></h3>
 <p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p><strong>Staging Area</strong> là khu vực sẽ lưu trữ những thay đổi của bạn trên tập tin để nó có thể được commit. Tập tin nào muốn được commit thì tập tin đó phải nằm trong Staging Area.</p>
 <p>Một tập tin khi nằm trong Staging Area sẽ có trạng thái là <code>staged</code>.</p>
 <p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
-<p>Lệnh <code>git add</code> dùng để thêm file có sự thay đổi (modified) vào Staging Area:</p>
+<p>Lệnh <code>git add</code> dùng để thêm file có sự thay đổi (modified) hoặc những file mới tạo (untracked) vào Staging Area:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// thêm tất cả các file modified và untracked
 git add . 
 
 // hoặc chỉ định cụ thể từng file
 git add navbar.html navbar.css navbar.js logo.jpg
 </code></pre></div><p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
+<h3 id="3-git-commit"><strong>3. git commit</strong></h3>
 <p>Commit là một hành động để Git lưu lại một bản chụp (snapshot) các sự thay đổi trong thư mục làm việc, và các tập tin và thư mục được thay đổi đã phải nằm trong Staging Area. Mỗi lần commit nó sẽ được lưu lại lịch sử chỉnh sửa của mã nguồn kèm theo tên và địa chỉ email của người commit.</p>
 <p>Lệnh <code>git commit -m &quot;&lt;Nội dung commit&gt;&quot;</code> dùng để tạo 1 commit. Trường hợp nội dung commit phức tạp, cần ghi rõ ràng thì gõ <code>git commit</code>, 1 trình soạn thảo dựa theo cài đặt sẽ được mở ra để nhập nội dung (có thể cài đặt editor bằng lệnh <code>git config [--global] core.editor &lt;Tên editor&gt;</code>).</p>
-<p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">git commit -m <span style="color:#e6db74">&#34;Add branded navbar&#34;</span>
+</code></pre></div><p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
 <p>Mỗi commit sẽ có 1 mã hash (mã này là duy nhất trong phạm vi project) dựa theo message. Đồng thời commit này cũng sẽ chứa đường dẫn đến commit trước đó (commit cha).</p>
 <p><img src="image/Untitled%204.png" alt="image/Untitled%204.png"></p>
 <p>Để xem lịch sử commit, chúng ta dùng lệnh <code>git log</code> .</p>
-<p>[ ẢNH ]</p>
+<p><img src="image/Untitled%205.png" alt="image/Untitled%204.png"></p>
 <p>1 số quy tắc nên dùng khi commit:</p>
 <ul>
 <li>1 git commit cần có tính atomic, tức là 1 commit chỉ thể hiện 1 hành động duy nhất.</li>
 <li>tiêu đề không nên quá 50 kí tự, nếu dài hơn thì cân nhắc chuyển xuống body. Mỗi dòng ở body không nên chứa quá 72 kí tự để đảm bảo dễ đọc.</li>
 </ul>
-<p>Trường hợp commit message sai, hoặc muốn thêm file mới sửa, có thể dùng lệnh <code>git commit --amend</code>.</p>
-<p>Cập nhật lại message nếu cần và lưu =&gt; Done.</p>
-<p>[ ẢNH ]</p>
+<p><strong>Tip</strong>: Trường hợp commit message sai, hoặc muốn thêm file mới sửa (file này đã ở trạng thái <code>staged</code>), có thể dùng lệnh <code>git commit --amend</code>. Cập nhật lại message nếu cần và lưu.</p>
 <p>Trong thực tế, có nhiều file, folder chúng ta không muốn git theo dõi. Để khai báo các file này, chúng ta có thể tạo 1 file .gitignore và điền tên các file, folder vào.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">/*
 * Nội dung <span style="color:#ae81ff">1</span> file gitignore

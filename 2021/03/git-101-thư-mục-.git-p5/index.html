@@ -8,22 +8,18 @@
 <meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
 <meta name="author" content="Đặng Tuấn Dương">
 <meta name="keywords" content="git, .git, commit">
-<meta name="description" content="File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).
-Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.">
+<meta name="description" content="Đến bài này trong series, thì chúng ta có thể công nhận git rất vi diệu đúng không? Vậy sự vi diệu của git đến từ đâu, git lưu dữ liệu như thế nào để có thể làm được những điều đó? Câu trả lời nằm trong thư mục .git..">
 
 
-<meta property="og:description" content="File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).
-Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.">
+<meta property="og:description" content="Đến bài này trong series, thì chúng ta có thể công nhận git rất vi diệu đúng không? Vậy sự vi diệu của git đến từ đâu, git lưu dữ liệu như thế nào để có thể làm được những điều đó? Câu trả lời nằm trong thư mục .git..">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 101: Thư mục .git (P5)">
 <meta name="twitter:title" content="Git 101: Thư mục .git (P5)">
 <meta property="og:url" content="/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/">
 <meta property="twitter:url" content="/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/">
 <meta property="og:site_name" content="duongdt&#39;s blog">
-<meta property="og:description" content="File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).
-Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.">
-<meta name="twitter:description" content="File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).
-Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.">
+<meta property="og:description" content="Đến bài này trong series, thì chúng ta có thể công nhận git rất vi diệu đúng không? Vậy sự vi diệu của git đến từ đâu, git lưu dữ liệu như thế nào để có thể làm được những điều đó? Câu trả lời nằm trong thư mục .git..">
+<meta name="twitter:description" content="Đến bài này trong series, thì chúng ta có thể công nhận git rất vi diệu đúng không? Vậy sự vi diệu của git đến từ đâu, git lưu dữ liệu như thế nào để có thể làm được những điều đó? Câu trả lời nằm trong thư mục .git..">
 <meta property="og:locale" content="vi">
 
   
@@ -186,7 +182,9 @@ Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, m�
           
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
-              <p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
+              <p>Đến bài này trong series, thì chúng ta có thể công nhận git rất vi diệu đúng không? Vậy sự vi diệu của git đến từ đâu, git lưu dữ liệu như thế nào để có thể làm được những điều đó? Câu trả lời nằm trong thư mục <strong>.git.</strong>.</p>
+<p><strong>git</strong> là thư mục được tạo khi dùng lệnh <code>git init</code> . Git sẽ lưu các thông tin cần thiết trong thư mục này mỗi khi commit, tạo nhánh,&hellip; Cùng tìm hiểu xem thư mục <strong>.git</strong> sẽ lưu những gì nhé.</p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
 <p>File config chứa các cấu hình mặc định cho dự án hiện tại. Mặc định, nếu không tìm thấy trong file này, git sẽ tự động lấy các giá trị mặc định hoặc trong file config global (tùy từng môi trường mà file này nằm ở các vị trí khác nhau, với linux hoặc macos thì có thể tìm theo đường dẫn ~/.gitconfig).</p>
 <p>Ví dụ, để cài đăt tên hoặc email của user cho riêng repo này, mà không ảnh hưởng đến repo khác.</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">// gõ lệnh trên terminal
