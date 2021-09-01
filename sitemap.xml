@@ -3,18 +3,24 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
+    <lastmod>2021-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/javascript/</loc>
+    <lastmod>2021-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/2021/04/js-concept-call-stack-event-loop-p6/</loc>
+    <lastmod>2021-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/posts/</loc>
+    <lastmod>2021-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2021-04-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/git/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/2021/03/git-101-th%C6%B0-m%E1%BB%A5c-.git-p5/</loc>
-    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2021-03-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
     <lastmod>2021-03-21T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/2021/03/git-101-head-git-checkout-reset-revert-restore-p4/</loc>
@@ -28,9 +34,6 @@
   </url><url>
     <loc>/2021/02/git-101-add-commit-branch-p1/</loc>
     <lastmod>2021-02-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/javascript/</loc>
-    <lastmod>2021-01-31T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/2021/01/js-concept-constructor-function-class-p5/</loc>
     <lastmod>2021-01-31T00:00:00+00:00</lastmod>
