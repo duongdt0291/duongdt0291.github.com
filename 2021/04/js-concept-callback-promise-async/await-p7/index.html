@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+     <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.83.1 with theme Tranquilpeak 0.4.8-BETA">
+<meta name="author" content="Đặng Tuấn Dương">
+<meta name="keywords" content="javascript, callback, promise, async, asynchronous, await">
+<meta name="description" content="Callback là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).">
+
+
+<meta property="og:description" content="Callback là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS Concept: Callback, Promise &amp; Async/await (P7)">
+<meta name="twitter:title" content="JS Concept: Callback, Promise &amp; Async/await (P7)">
+<meta property="og:url" content="/2021/04/js-concept-callback-promise-async/await-p7/">
+<meta property="twitter:url" content="/2021/04/js-concept-callback-promise-async/await-p7/">
+<meta property="og:site_name" content="duongdt&#39;s blog">
+<meta property="og:description" content="Callback là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).">
+<meta name="twitter:description" content="Callback là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).">
+<meta property="og:locale" content="vi">
+
+  
+    <meta property="article:published_time" content="2021-04-25T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-04-25T00:00:00">
+  
+  
+  
+  
+    
+      <meta property="article:tag" content="javascript">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="/images/avatar.jpeg">
+  <meta property="twitter:image" content="/images/avatar.jpeg">
+
+
+    <title>JS Concept: Callback, Promise &amp; Async/await (P7)</title>
+
+    <link
+      rel="icon"
+      href="/images/avatar.jpeg"
+    />
+     
+
+    <link rel="canonical" href="/2021/04/js-concept-callback-promise-async/await-p7/" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/styles/default.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.2.0/highlight.min.js"></script>
+
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css"
+      integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css"
+      integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU="
+      crossorigin="anonymous"
+    />
+    
+    
+    <link
+      rel="stylesheet"
+      href="/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css"
+    />
+    
+        <script>
+  hljs.highlightAll()
+</script>
+
+  </head>
+</html>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="2">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">duongdt&#39;s blog</a>
+  </div>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="2">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="/images/avatar.jpeg" alt="Ảnh đại diện" />
+        </a>
+        <h4 class="sidebar-profile-name">Đặng Tuấn Dương</h4>
+        
+          <h5 class="sidebar-profile-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/posts">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Trang chủ</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Thẻ thông tin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user-circle"></i>
+      
+      <span class="sidebar-button-desc">Thông tin</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="2"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      JS Concept: Callback, Promise &amp; Async/await (P7)
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-04-25T00:00:00Z">
+        
+  
+  
+  
+  
+    25 tháng 4 2021
+  
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Ở <a href="https://duongdt0291.github.io/2021/04/js-concept-call-stack-event-loop-p6/">bài viết trước</a>, chúng ta đã tìm hiểu về Callstack, Event loop và hiểu được tại sao JS là ngôn ngữ đơn luồng (single-thread) mà lại có thể thực hiện đa tác vụ, cách JS xử lí các tác vụ bất đồng bộ để không bị block lại stack của nó. Hôm nay, chúng ta sẽ tìm hiểu các khái niệm gắn liền với code bất đồng độ trong JS là Callbakc, Promise và Async/Await.</p>
+<h3 id="callback">Callback</h3>
+<p><strong>Callback</strong> là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).</p>
+<p>Callback được sử dụng rất nhiều trong JS. Nếu chưa biết hoặc chưa nghe về nó, đơn giản là do bạn sử dụng mà không biết nó là callback mà thôi. Các hàm của mảng như map, reduce, filter, &hellip; tất cả đều yêu cầu tham số truyền vào chính là 1 callback.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listUser</span> <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#39;duongdt&#39;</span>, <span style="color:#e6db74">&#39;duydx&#39;</span>, <span style="color:#e6db74">&#39;longnd&#39;</span>, <span style="color:#e6db74">&#39;thuongnv&#39;</span>]
+
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listUserStartWithLetterD</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listUser</span>.<span style="color:#a6e22e">filter</span>((<span style="color:#a6e22e">userName</span>) =&gt;
+  <span style="color:#a6e22e">userrName</span>.<span style="color:#a6e22e">startsWith</span>(<span style="color:#e6db74">&#39;d&#39;</span>)
+)
+</code></pre></div><p>Trước khi có sự xuất hiện của promise hay async/await (chúng ta sẽ tìm hiểu 2 khái niệm này ở phần dưới), Callback là pattern chính được sử dụng ở các tác vụ bất đồng bộ.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#75715e">// Cấu trúc callback cần truyền vào khi sử dụng hàm của module trên nodejs là
+</span><span style="color:#75715e">// (err, data) ⇒ { //code xử lí }
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">fs</span>.<span style="color:#a6e22e">readFile</span>(<span style="color:#e6db74">&#39;./test.txt&#39;</span>, <span style="color:#e6db74">&#39;utf8&#39;</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">data</span>) =&gt; {
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">err</span>) {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#a6e22e">err</span>)
+    <span style="color:#66d9ef">return</span>
+  }
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>)
+})
+<span style="color:#75715e">// đoạn code này rất đơn giản
+</span><span style="color:#75715e">// Hey Nodejs!
+</span><span style="color:#75715e">// đọc cho tao file test.txt nằm trong cùng thư mục với file này,
+</span><span style="color:#75715e">// sau đó trả về cho tao dữ liệu của file, hoặc nếu có lỗi thì trả về cho tao lỗi.
+</span><span style="color:#75715e">// Tao sẽ xử lí dữ liệu hoặc lỗi đó theo logic hàm callback tao truyền vào.
+</span></code></pre></div><p>Với các tác vụ đơn giản như trên thì không xảy ra vấn đề gì về code. Tuy nhiên khi logic tăng lên, việc thực thi 1 dãy các hành động lần lượt khiến cho việc viết code trở nên rất khó đọc.</p>
+<p>Dưới đây là ví dụ khi người dùng vào trang quản lý khách hàng và cần gọi Api để lấy dữ liệu cần thiết cho giao diện.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/customer&#39;</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listCustomer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+  <span style="color:#75715e">// Lấy danh sách đơn hàng của người dùng đầu tiên
+</span><span style="color:#75715e"></span>  <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/customer/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">firstCustomerId</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/order`</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listOrder</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#75715e">// Lấy thông tin chi tiết của đơn hàng đầu tiền
+</span><span style="color:#75715e"></span>    <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/order/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">firstOrderId</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>, (<span style="color:#a6e22e">err</span>, <span style="color:#a6e22e">response</span>) =&gt; {
+      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">orderDetail</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">data</span>
+      <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    })
+  })
+})
+</code></pre></div><p>Dưới đây là phần code mình viết lại dùng setTimeout để giả lập tạm việc dùng axios như trên:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">customerDataStorages</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;duongdt&#39;</span> },
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dtd&#39;</span> },
+]
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">orderDataStorages</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">customerId</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">totalAmount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span> },
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">customerId</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">totalAmount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span> },
+]
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getListCustomer</span>(<span style="color:#a6e22e">cb</span>) {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">cb</span>(<span style="color:#a6e22e">customerDataStorages</span>), <span style="color:#ae81ff">1000</span>)
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getListOrderByCustomerId</span>(<span style="color:#a6e22e">customerId</span>, <span style="color:#a6e22e">cb</span>) {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listOrder</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">orderDataStorages</span>.<span style="color:#a6e22e">filter</span>(
+      (<span style="color:#a6e22e">order</span>) =&gt; <span style="color:#a6e22e">order</span>.<span style="color:#a6e22e">customerId</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">customerId</span>
+    )
+
+    <span style="color:#a6e22e">cb</span>(<span style="color:#a6e22e">listOrder</span>)
+  }, <span style="color:#ae81ff">1000</span>)
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">orderId</span>, <span style="color:#a6e22e">cb</span>) {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">order</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">orderDataStorages</span>.<span style="color:#a6e22e">find</span>((<span style="color:#a6e22e">order</span>) =&gt; <span style="color:#a6e22e">order</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">orderId</span>)
+    <span style="color:#a6e22e">cb</span>(<span style="color:#a6e22e">order</span>)
+  }, <span style="color:#ae81ff">1000</span>)
+}
+
+<span style="color:#a6e22e">getListCustomer</span>((<span style="color:#a6e22e">listCustomer</span>) =&gt; {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+  <span style="color:#a6e22e">getListOrderByCustomerId</span>(<span style="color:#a6e22e">firstCustomerId</span>, (<span style="color:#a6e22e">listOrder</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">firstOrderId</span>, (<span style="color:#a6e22e">order</span>) =&gt; {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">order</span>)
+      <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>    })
+  })
+})
+
+<span style="color:#75715e">// {id: 1, customerId: 1, totalAmount: 1000}
+</span></code></pre></div><p>Ở 2 đoạn code trên, do các bước sau đều phụ thuộc vào các bước trước, nên chúng ta phải truyền callback lồng nhau liên tục, khiến cho code rất khó đọc, khó bảo trì, sửa lỗi. Đây được gọi là <strong>Callback hell</strong>.</p>
+<p>Để giải quyết vấn đề này, ES6 cung cấp chúng ta 1 công cụ mới, giúp viết code bất đồng bộ gọn gàng hơn, đó chính là Promise.</p>
+<h3 id="promise">Promise</h3>
+<p>Mọi thứ trong JS đều là object, và Promise cũng không ngoại lệ. Promise đơn giản là 1 object đặc biệt. Promise được khởi tạo theo cú pháp sau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">promise</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+  <span style="color:#75715e">// Thực hiện các tác vụ bất đồng bộ: setTimeout, gọi Api lấy dữ liệu, ...
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// trả về kết quả (data) hoặc lỗi (error)
+</span><span style="color:#75715e"></span>  <span style="color:#75715e">// ...
+</span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">error</span>) <span style="color:#a6e22e">reject</span>(<span style="color:#a6e22e">error</span>)
+
+  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">data</span>) <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">data</span>)
+})
+</code></pre></div><p>Mỗi 1 promise object đều có 1 thuộc tính ẩn lưu trạng thái ([[PromiseState]]) là 1 trong 3 trạng thái sau:</p>
+<ul>
+<li>
+<p>Pending: trạng thái khi promise được khởi tạo, các tác vụ bất đồng bộ đang được xử lí và hàm resolve hoặc reject chưa được gọi.</p>
+</li>
+<li>
+<p>Fullfilled: trạng thái khi hàm resolve được gọi.</p>
+</li>
+<li>
+<p>Rejected: trạng thái khi hàm reject được gọi hoặc throw error.</p>
+<p><img src="image/Untitled.png" alt="image/Untitled.png"></p>
+</li>
+</ul>
+<p>Ở trạng thái fullfilled hoặc rejected, promise object sẽ có 1 thuộc tính ẩn lưu giá trị được truyền vào khi gọi hàm resolve hoặc rejected ([[PromiseResult]]).</p>
+<p>Vis dụ:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getListCustomer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#a6e22e">resolve</span>([
+      {
+        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;duongdt&#39;</span>,
+      },
+    ])
+  }, <span style="color:#ae81ff">5000</span>)
+})
+
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">getListCustomer</span>)
+</code></pre></div><p><img src="image/Untitled%201.png" alt="image/Untitled%201.png"></p>
+<p>Ở lần console.log này, do chúng ta để sau 5s, hàm callback của setTimeout mới chạy, do vậy trạng thái của promise đang là pending và thuộc tính giá trị đang là undefined.</p>
+<p>Sau 5s, chúng ta console.log(getListCustomer) 1 lần nữa và được kết quả sau:</p>
+<p><img src="image/Untitled%202.png" alt="image/Untitled%202.png"></p>
+<p>Rõ ràng là hàm resolve đã được gọi, khiến cho trạng thái của promise object chueyenr thành fullfilled và giá trị là array được truyền vào khi gọi hàm resolve.</p>
+<p>Với rejected cũng tương tự:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getListCustomer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#a6e22e">reject</span>(<span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">&#39;Internal server error&#39;</span>))
+  }, <span style="color:#ae81ff">5000</span>)
+})
+</code></pre></div><p><img src="image/Untitled%203.png" alt="image/Untitled%203.png"></p>
+<p>Như ở trên mình có nói, giá trị khi resolve hoặc reject thì được lưu vào 1 thuộc tính ẩn, không thể truy cập theo cách thông thường dạng object.property. Thay vào đó để lấy được giá trị này, với trạng thái fullfilled, chúng ta dùng method then(), với trạng thái rejected, dùng catch như sau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">promise</span>
+  .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">value</span> =&gt; {
+    <span style="color:#75715e">// xử lí value...
+</span><span style="color:#75715e"></span>  })
+	.<span style="color:#66d9ef">catch</span>(<span style="color:#a6e22e">error</span> =&gt; {
+		<span style="color:#75715e">// xử lí khi có error ...
+</span><span style="color:#75715e"></span>	};
+
+<span style="color:#75715e">//
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">promise</span>
+	.<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">value</span> =&gt; { ... }, <span style="color:#a6e22e">error</span> =&gt; { ... })
+</code></pre></div><p>Ví dụ:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+  <span style="color:#a6e22e">setTimeout</span>(() =&gt; {
+    <span style="color:#a6e22e">resolve</span>([
+      {
+        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+        <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;duongdt&#39;</span>,
+      },
+    ])
+  }, <span style="color:#ae81ff">5000</span>)
+}).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">data</span>) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">data</span>))
+<span style="color:#75715e">// Sau 5s, màn hình sẽ in ra
+</span><span style="color:#75715e">// [{ id: 1, name: &#34;duongdt&#34; }]
+</span></code></pre></div><p>Quay lại ví dụ trên, đến đây chắc mọi người cũng vẫn chưa hiểu nó giúp gì được cho callback hell ở trên, suy cho cùng vẫn phải viết kiểu lồng nhau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">customerDataStorages</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;duongdt&#39;</span> },
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;dtd&#39;</span> },
+]
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">orderDataStorages</span> <span style="color:#f92672">=</span> [
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">customerId</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">totalAmount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span> },
+  { <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">customerId</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>, <span style="color:#a6e22e">totalAmount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span> },
+]
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getListCustomer</span>() {
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+    <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">customerDataStorages</span>), <span style="color:#ae81ff">1000</span>)
+  })
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getListOrderByCustomerId</span>(<span style="color:#a6e22e">customerId</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">listOrder</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">orderDataStorages</span>.<span style="color:#a6e22e">filter</span>(
+    (<span style="color:#a6e22e">order</span>) =&gt; <span style="color:#a6e22e">order</span>.<span style="color:#a6e22e">customerId</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">customerId</span>
+  )
+
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+    <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">listOrder</span>), <span style="color:#ae81ff">1000</span>)
+  })
+}
+
+<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">orderId</span>) {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">order</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">orderDataStorages</span>.<span style="color:#a6e22e">find</span>((<span style="color:#a6e22e">order</span>) =&gt; <span style="color:#a6e22e">order</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">orderId</span>)
+
+  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Promise((<span style="color:#a6e22e">resolve</span>, <span style="color:#a6e22e">reject</span>) =&gt; {
+    <span style="color:#a6e22e">setTimeout</span>(() =&gt; <span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">order</span>), <span style="color:#ae81ff">1000</span>)
+  })
+}
+
+<span style="color:#a6e22e">getListCustomer</span>().<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listCustomer</span>) =&gt; {
+  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getListCustomer</span>(<span style="color:#a6e22e">firstCustomer</span>).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listOrder</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">firstOrderId</span>).<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">order</span>) =&gt; {
+      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">order</span>)
+    })
+  })
+})
+</code></pre></div><p>Có 1 lưu ý vô cùng quan trọng, đó là method then hoặc catch luôn trả về 1 promise object. Do vậy chúng ta hoàn toàn có thể viết như sau nối nhiều then lại như sau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">getListCustomer</span>()
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listCustomer</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getListOrderByCustomerId</span>(<span style="color:#a6e22e">firstCustomerId</span>)
+  })
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listOrder</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">firstOrderId</span>)
+  })
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">order</span>) =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">order</span>)
+  })
+  .<span style="color:#66d9ef">catch</span>((<span style="color:#a6e22e">error</span>) =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">error</span>)
+  })
+
+<span style="color:#75715e">// Sau 3s,
+</span><span style="color:#75715e">// {id: 1, customerId: 1, totalAmount: 1000}
+</span></code></pre></div><p>Package axios để call api cũng hỗ trợ viết theo kiểu promise như sau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#a6e22e">axios</span>
+  .<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/customer&#39;</span>)
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listCustomer</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/customer/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">firstCustomerId</span><span style="color:#e6db74">}</span><span style="color:#e6db74">/order`</span>)
+  })
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">listOrder</span>) =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">axios</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">`/order/</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">firstOrderId</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
+  })
+  .<span style="color:#a6e22e">then</span>((<span style="color:#a6e22e">order</span>) =&gt; {
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">order</span>)
+  })
+</code></pre></div><p>Có thể thấy rằng, <strong>Promise</strong> đã giúp code gọn gàng hơn nhiều so với việc sử dụng <strong>callback</strong> rồi, khi mà các tác vụ phụ thuộc trước sau không còn phải lần nhau nữa.</p>
+<p>Từ ES8, JS lại tiếp tục cung cấp cho chúng ta 1 công cụ nữa, giúp việc viết code bất đồng bộ như viết code đồng bộ bình thường, khiến cho code logic rất dễ đọc, đó là <strong>async/await.</strong></p>
+<h3 id="asncawait">Asnc/Await</h3>
+<p>Cú pháp Async/Await như sau:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">fnName</span> {
+	<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">promise</span>
+}
+</code></pre></div><p>Có 1 vài lưu ý nhỏ khi sử dụng async/await:</p>
+<ul>
+<li>Await chỉ được sử dụng trong function được khai báo kèm với từ khóa Async.</li>
+<li>Async function luôn trả về 1 promise.</li>
+</ul>
+<p>Ví dụ:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getData</span>() {
+  <span style="color:#66d9ef">try</span> {
+    <span style="color:#75715e">// Lấy danh sách người dùng
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">listCustomer</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getListCustomer</span>()
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstCustomerId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listCustomer</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#75715e">// Lấy danh sách đơn hàng của người dùng đầu tiên
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">listOrder</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getListOrderrByCustomerId</span>(<span style="color:#a6e22e">firstCustomerId</span>)
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">firstOrderId</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">listOrder</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">id</span>
+
+    <span style="color:#75715e">// Lấy thông tin chi tiết của đơn hàng đầu tiền
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">orderDetail</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getOrderDetail</span>(<span style="color:#a6e22e">firstOrderId</span>)
+
+    <span style="color:#66d9ef">return</span> {
+      <span style="color:#a6e22e">listCustomer</span>,
+      <span style="color:#a6e22e">listOrder</span>,
+      <span style="color:#a6e22e">orderDatail</span>,
+    }
+  } <span style="color:#66d9ef">catch</span> (<span style="color:#a6e22e">err</span>) {
+    <span style="color:#66d9ef">throw</span> <span style="color:#a6e22e">err</span>
+  }
+}
+
+<span style="color:#a6e22e">getData</span>()
+</code></pre></div><p>Nói đúng là trông không khác gì code đồng bộ đúng không nào. Đến đây có thể nhiều người đọc bài trước về Callstack, Eventloop của mình sẽ thắc mắc. Ủa? Vậy nó await, nó chờ thế này thì trong lúc đấy các tác vụ khác có chạy được không, hay lý thuyết hơn là callstack có phải dừng lại để chờ có kết quả trả về không? Câu trả lời thì dĩ nhiên là không rồi. Nếu tù thế thì ai đưa vào làm gì. Mọi người có thể coi nó đơn giản các phần dưới code dưới await nó như 1 callback thôi, nó vẫn sẽ được đây ra Web APIs (với browser) hoặc thread pool (Nodejs) để xử lí. Xử lí xong mới đẩy vào callback queue và chờ Event loop nhét ngược lại vào Callstack và tiếp tục thực thi những đoạn code phía dưới.</p>
+<p>JS cũng cung cấp thêm 1 số công cụ khác để việc xử lí tối ưu hơn. Ví dụ như với đoạn code trên, khi lấy danh sách đơn hàng, đồng thời UI cũng cần thông tin chi tiết của khách hàng đầu tiên. Việc lấy này cần thực hiện song song, vì 2 dữ liệu cũng không liên quan gì đến nhau. Lúc này, chúng ta có thể sử dụng Promise.all để gọi đồng thời 2 api lấy dữ liệu.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">listOrder</span>, <span style="color:#a6e22e">customerProfile</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Promise.<span style="color:#a6e22e">all</span>([
+  <span style="color:#a6e22e">getListOrderrByCustomerId</span>(<span style="color:#a6e22e">customerId</span>),
+  <span style="color:#a6e22e">getCustomerProfile</span>(<span style="color:#a6e22e">customerId</span>),
+])
+</code></pre></div><p>Ngoài Promise.all, còn có Promise.any(), Promise.race(), &hellip; Mọi người có thể google và xem cách sử dụng nhé. Mình chỉ demo thằng Promise.all vì nó rất hay được sử dụng thôi.</p>
+<p>Cảm ơn và hẹn gặp lại mọi người ở bài viết tới.</p>
+<p>Tham khảo:</p>
+<ul>
+<li><a href="https://dmitripavlutin.com/what-is-javascript-promise/">https://dmitripavlutin.com/what-is-javascript-promise/</a></li>
+<li><a href="https://ui.dev/async-javascript-from-callbacks-to-promises-to-async-await/">https://ui.dev/async-javascript-from-callbacks-to-promises-to-async-await/</a></li>
+<li><a href="https://www.freecodecamp.org/news/how-to-deal-with-nested-callbacks-and-avoid-callback-hell-1bc8dc4a2012/">https://www.freecodecamp.org/news/how-to-deal-with-nested-callbacks-and-avoid-callback-hell-1bc8dc4a2012/</a></li>
+<li><a href="https://javascript.info/promise-basics">https://javascript.info/promise-basics</a></li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">THẺ ĐÁNH DẤU</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/javascript/">javascript</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/04/js-concept-call-stack-event-loop-p6/" data-tooltip="JS Concept: Call Stack, Event Loop (P6)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Trước</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Tiếp</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/04/js-concept-callback-promise-async/await-p7/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/04/js-concept-callback-promise-async/await-p7/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Đặng Tuấn Dương. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="2">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/04/js-concept-call-stack-event-loop-p6/" data-tooltip="JS Concept: Call Stack, Event Loop (P6)">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">Trước</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">Tiếp</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2021/04/js-concept-callback-promise-async/await-p7/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2021/04/js-concept-callback-promise-async/await-p7/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+      
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="2">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2021%2F04%2Fjs-concept-callback-promise-async%2Fawait-p7%2F">
+          <i class="fa fa-facebook-official"></i><span>Chia sẻ với Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2021%2F04%2Fjs-concept-callback-promise-async%2Fawait-p7%2F">
+          <i class="fa fa-twitter"></i><span>Chia sẻ với Twitter</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="/images/avatar.jpeg" alt="Ảnh đại diện" />
+    
+    <h4 id="about-card-name">Đặng Tuấn Dương</h4>
+    
+      <div id="about-card-bio"><a href="mailto:duongdt0291@gmail.com">duongdt0291@gmail.com</a></div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        NodeJs Developer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Việt Nam
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('/images/cover.jpeg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+  
+    <script src="js/myscript.js"></script>
+  
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,7 +6,16 @@
     <description>Recent content in javascript on duongdt&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 11 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>JS Concept: Callback, Promise &amp; Async/await (P7)</title>
+      <link>/2021/04/js-concept-callback-promise-async/await-p7/</link>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/04/js-concept-callback-promise-async/await-p7/</guid>
+      <description>&lt;strong&gt;Callback&lt;/strong&gt; là 1 hàm A được sử dụng như tham số truyền vào của hàm B khác. Hàm A được gọi ngay lập tức hoặc trễ một chút sau khi hàm B được gọi (cơ chế rất phù hợp với tên gọi của nó đúng không? Callback dịch ra chính là gọi lại sau).</description>
+    </item>
+    
     <item>
       <title>JS Concept: Call Stack, Event Loop (P6)</title>
       <link>/2021/04/js-concept-call-stack-event-loop-p6/</link>
