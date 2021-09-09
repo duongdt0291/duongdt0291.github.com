@@ -6,7 +6,16 @@
     <description>Recent content on duongdt&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 02 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nodejs Core Module: EventEmitter (P1)</title>
+      <link>/2021/05/nodejs-core-module-eventemitter-p1/</link>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/nodejs-core-module-eventemitter-p1/</guid>
+      <description>EventEmitter có thể nói chính là linh hồn của Nodejs trong việc triển khai kiến trúc hướng sự kiện. Không chỉ class Server, mà rất nhiều class ở các module khác nhau đều kế thừa từ class này.</description>
+    </item>
+    
     <item>
       <title>JS Concept: Callback, Promise &amp; Async/await (P7)</title>
       <link>/2021/04/js-concept-callback-promise-async/await-p7/</link>
