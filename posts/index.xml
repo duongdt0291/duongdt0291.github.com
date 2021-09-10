@@ -8,11 +8,20 @@
     <language>en-us</language>
     <lastBuildDate>Sun, 02 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Nodejs Core Module: EventEmitter (P1)</title>
-      <link>/2021/05/nodejs-core-module-eventemitter-p1/</link>
+      <title>Nodejs Core Module: Buffer (P2)</title>
+      <link>/2021/05/nodejs-core-module-buffer-p2/</link>
       <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
       
-      <guid>/2021/05/nodejs-core-module-eventemitter-p1/</guid>
+      <guid>/2021/05/nodejs-core-module-buffer-p2/</guid>
+      <description>JS không cung cấp công cụ để làm việc trực tiếp với binary data (dữ liệu lưu dưới dạng mã nhị phân). Việc này không gây quá nhiều ảnh hưởng ở môi trường trình duyệt. Tuy nhiên, trên server, có rất nhiều tác vụ phải xử lí binary data. Nếu chỉ dùng những gì JS cung cấp thì việc xử lí sẽ rất chậm, do vậy Nodejs đã phát triển và cung cấp 1 công cụ khác để giải quyết vấn đề này. Đó là Buffer.</description>
+    </item>
+    
+    <item>
+      <title>Nodejs Core Module: Events (P1)</title>
+      <link>/2021/05/nodejs-core-module-events-p1/</link>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/nodejs-core-module-events-p1/</guid>
       <description>EventEmitter có thể nói chính là linh hồn của Nodejs trong việc triển khai kiến trúc hướng sự kiện. Không chỉ class Server, mà rất nhiều class ở các module khác nhau đều kế thừa từ class này.</description>
     </item>
     
