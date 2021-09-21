@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>design pattern on duongdt&#39;s blog</title>
+    <link>/tags/design-pattern/</link>
+    <description>Recent content in design pattern on duongdt&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 16 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Design Pattern 101: Builder Pattern (P1)</title>
+      <link>/2021/05/design-pattern-101-builder-pattern-p1/</link>
+      <pubDate>Sun, 16 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/2021/05/design-pattern-101-builder-pattern-p1/</guid>
+      <description>JBuilder Pattern, dịch ra là mẫu thợ xây 😄. Cái tên đã cho thấy nó là 1 mẫu khởi tạo rồi. Đây là 1 pattern thường được sử dụng khi đối tượng được khởi tạo với rất nhiều tham số truyền vào, mà nếu sử dụng với từ khóa new như bình thường thì code sẽ khá rối, khó bảo trì và mở rộng.</description>
+    </item>
+    
+  </channel>
+</rss>

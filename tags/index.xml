@@ -6,11 +6,20 @@
     <description>Recent content in Tags on duongdt&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 May 2021 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>design pattern</title>
+      <link>/tags/design-pattern/</link>
+      <pubDate>Sun, 16 May 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/design-pattern/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>nodejs</title>
       <link>/tags/nodejs/</link>
-      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 09 May 2021 00:00:00 +0000</pubDate>
       
       <guid>/tags/nodejs/</guid>
       <description></description>
